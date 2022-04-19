@@ -6,12 +6,12 @@
 /*   By: rpaulino <rpaulino@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 00:44:33 by rpaulino          #+#    #+#             */
-/*   Updated: 2022/04/19 00:59:37 by rpaulino         ###   ########.fr       */
+/*   Updated: 2022/04/19 01:36:25 by rpaulino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#ifndef MINIRT_H
+# define MINIRT_H
 
 #include <stdio.h> 
 #include <string.h> 
@@ -41,44 +41,61 @@ typedef struct s_color
 	size_t z;
 }		t_color;
 
-typedef struct s_cylinder
-{
-	double	diameter;
-	double	height;
-}		t_cylinder;
-
-typedef struct s_sphere
-{
-	double	diameter;
-}		t_sphere;
-
 typedef struct s_light
 {
-	double	 brightness_ratio;
+	t_coordinates	coordinates;
+	double			brightness_ratio;
+	t_color			color;
 }		t_light;
 
 typedef struct s_camera
 {
 	size_t	FOV;
+	t_coordinates coordinates;
+	t_norm_vector norm_vector;
 }		t_camera;
+
 
 typedef struct s_ambient
 {
 	double	lighting_ratio;
+	t_color	color;
 }		t_ambient;
 
-typedef struct s_entity
+// MULTIPLE ELEMENTS
+typedef struct s_plane
 {
-	char			*identifier;
+	t_coordinates coordinates;
+	t_norm_vector norm_vector;
+	t_color color;
+	struct s_plane *next;
+}		t_plane;
+typedef struct s_cylinder
+{
+	t_coordinates coordinates;
+	t_norm_vector norm_vector;
+	t_color color;
+	double	diameter;
+	double	height;
+	struct s_cylinder *next;
+}		t_cylinder;
+
+typedef struct s_sphere
+{
 	t_coordinates	coordinates;
 	t_color			color;
-	t_norm_vector	norm_vector;
+	double			diameter;
+	struct s_sphere		*next;
+}		t_sphere;
+//_____________________________
+typedef struct s_data
+{
 	t_light			light;
 	t_camera		camera;
 	t_ambient		ambient;
-	t_sphere		sphere;
-	t_cylinder		cylinder;
-	struct s_entity	*next;
-}					t_entity;
+	t_plane			*plane;
+	t_sphere		*sphere;
+	t_cylinder		*cylinder;
+}					t_data;
 
 #endif

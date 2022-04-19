@@ -10,12 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<stdio.h> 
-#include<string.h> 
-#include<unistd.h> 
-#include<fcntl.h> 
-#include <errno.h>
-#include <stdlib.h>
 #include "minirt.h"
 /*
 Open file safely and Read Everything (EASY).
@@ -25,7 +19,7 @@ Interpret the data structures into visuals (HARD).
 
 int main(int argc, char *argv[])
 {
-	t_entity data;
+	t_data data;
 
 	printf("%ld\n", sizeof(data));
 	exit(1);
