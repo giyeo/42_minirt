@@ -99,15 +99,16 @@ void	*parse_one_number(char *string, int is_double)
 
 int main(void)
 {
-	int *list = (int *)parse_three_numbers("134,145,155", 0);
+	int *list = (int *)parse_three_numbers("             134,145,155", 0);
 	double *dob = (double *)parse_three_numbers("1.1,13.4,14", 1);
-	printf("%d %d %d\n", list[0], list[1], list[2]);
-	printf("%f %f %f\n", dob[0], dob[1], dob[2]);
 	int *integer = (int *)parse_one_number("3", 0);
 	double *doub = (double *)parse_one_number("34.2", 1);
+
+	printf("%d %d %d\n", list[0], list[1], list[2]);
+	printf("%f %f %f\n", dob[0], dob[1], dob[2]);
 	printf("%d\n", integer[0]);
 	printf("%f\n", doub[0]);
-
+	
 	free(integer);
 	free(doub);
 	free(list);

@@ -6,19 +6,21 @@
 /*   By: rpaulino <rpaulino@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 00:44:33 by rpaulino          #+#    #+#             */
-/*   Updated: 2022/04/19 01:36:25 by rpaulino         ###   ########.fr       */
+/*   Updated: 2022/04/21 16:06:40 by rpaulino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-#include <stdio.h> 
-#include <string.h> 
-#include <unistd.h> 
-#include <fcntl.h> 
-#include <errno.h>
-#include <stdlib.h>
+# include "minilibx-linux/mlx.h"
+# include <stdio.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <errno.h>
+# include <stdlib.h>
+
+# include <string.h> //illegal
 
 typedef struct s_coordinates
 {
