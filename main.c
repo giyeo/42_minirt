@@ -17,7 +17,7 @@ Translate the file to data structures (MEDIUM).
 Interpret the data structures into visuals (HARD).
 */
 
-int main(int argc, char *argv[])
+int mains(char *argv[])
 {
 	t_data data;
 
