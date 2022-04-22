@@ -6,7 +6,7 @@
 /*   By: rpaulino <rpaulino@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 22:00:28 by rpaulino          #+#    #+#             */
-/*   Updated: 2022/04/20 07:28:39 by rpaulino         ###   ########.fr       */
+/*   Updated: 2022/04/22 00:15:20 by rpaulino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,25 @@
 // ◦ Elements which are defined by a capital letter can only be declared once in
 // the scene.
 
-int setAmbient(char *type, char *string, t_data *data)
-{
-	if(is_unique(type, string))
-	{
-	}
-	else
-		return (0);
-}
 
+int	check_for_ambient(char *string, t_data *data)
+{
+	t_ambient	*ambient;
+	double		*lightning_ratio;
+	int			*color;
+	
+	int i = 0;
+	ambient = (t_ambient *)malloc(sizeof(t_ambient));
+	i += until_another_space(&string[i]);
+	color = (int *)parse_three_numbers(&string[i], 0);
+	i += until_another_space(&string[i]);
+	lightning_ratio = (double *)parse_one_number(&string[i], 1);
+
+	data->ambient->color = color;
+	data->ambient->lighting_ratio = *lightning_ratio;
+
+	return (1);
+}
 
 int	identify_type(char *string, t_data *data)
 {
@@ -37,17 +47,17 @@ int	identify_type(char *string, t_data *data)
 	while(string[i])
 	{
 		if(string[i] == 'A')
-			return(check_for("A", string, data));
-		else if(string[i] == 'C')
-			return(check_for("C", string, data));
-		else if(string[i] == 'L')
-			return(check_for("L", string, data));
-		else if(string[i] == 'p')
-			return(check_for("pl", string, data));
-		else if(string[i] == 's')
-			return(check_for("sp", string, data));
-		else if(string[i] == 'c')
-			return(check_for("cy", string, data));
+			return(check_for_ambient(&string[i + 1], data));
+		// else if(string[i] == 'C')
+		// 	return(check_for(string[i], string, data));
+		// else if(string[i] == 'L')
+		// 	return(check_for(string[i], string, data));
+		// else if(string[i] == 'p')
+		// 	return(check_for(string[i], string, data));
+		// else if(string[i] == 's')
+		// 	return(check_for(string[i], string, data));
+		// else if(string[i] == 'c')
+		// 	return(check_for(string[i], string, data));
 		else
 			i++;
 	}
@@ -66,7 +76,7 @@ int main(void)
 	int i = 0;
 	
 	identify_type(A, &data);
-
+	printf("%ld", data.ambient->color.x);
 
 	printf("\n");
 	return(0);
