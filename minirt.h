@@ -40,6 +40,8 @@ char	*ft_strdup(const char *s);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 int		ft_isdigit(int argument);
 size_t	ft_strlen(const char *pointer);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	**ft_split(char const *s, char c);
 
 int		jump_to_another_sentence(char *string);
 int		is_equal(char *str1, char *str2);
