@@ -6,7 +6,7 @@
 /*   By: rpaulino <rpaulino@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 00:44:33 by rpaulino          #+#    #+#             */
-/*   Updated: 2022/04/22 13:24:01 by rpaulino         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:48:50 by rpaulino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,6 @@ void	*parse_three_numbers(char *string, int is_double);
 void	*parse_one_number(char *string, int is_double);
 int		ms_parse_three_numbers(char *string, int is_double, int **ret_int, double **ret_double);
 int		ms_parse_one_number(char *string, int is_double, int *ret_int, double *ret_double);
+
+int		identify_type(char *string, t_data *data);
 #endif
