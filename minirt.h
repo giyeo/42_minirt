@@ -42,6 +42,7 @@ int		ft_isdigit(int argument);
 size_t	ft_strlen(const char *pointer);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 int		jump_to_another_sentence(char *string);
 int		is_equal(char *str1, char *str2);

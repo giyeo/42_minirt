@@ -44,19 +44,23 @@ int	next_nl(char *buffer)
 		i++;
 	return i;
 }
-char *get_argument(char *buffer, char **arguments, int place)
+char *get_argument(char *buffer, char **arguments, int *place)
 {
 	char *new_buff;
-
-	int sub_string_length = next_nl(buffer);
-
-	if(!sub_string_length)
-		new_buff = ft_substr(buffer,1,strlen(buffer));
+	int sub_string_length;
+	
+	sub_string_length = next_nl(buffer);
+	if(buffer[0] == '\0')
+		return NULL;
+	if(sub_string_length == 0)
+		new_buff = ft_substr(buffer, 1, strlen(buffer));
 	else
 	{
-		arguments[place] = ft_substr(buffer, 0, sub_string_length);
+		arguments[*place] = ft_substr(buffer, 0, sub_string_length);
+		(*place)++;
 		new_buff = ft_substr(buffer,sub_string_length,strlen(buffer));
 	}
+
 	free(buffer);
 	return new_buff;
 }
@@ -71,13 +75,11 @@ char **get_arguments(char *buffer){
 	number_of_arguments = count_arguments(buffer);
 
 	arguments = (char **)malloc(sizeof(char *) * number_of_arguments + 1);
-	exit(0);
-
-
 
 	while(buffer)
-		buffer = get_argument(buffer, arguments, i++);
+		buffer = get_argument(buffer, arguments, &i);
 	arguments[i] = NULL;
+
 	return arguments;
 }
 
@@ -85,15 +87,19 @@ char *get_buffer(int fd)
 {
 	char    *buffer;
 	char    temp[1];
+	char	*temporary;
     ssize_t n;
 
     buffer = strdup("");
     n = read(fd, temp, 1);
 	while (n > 0)
     {
-        buffer = strncat(buffer, temp, 1);
+		temporary = ft_strjoin(buffer, temp);
+        free(buffer);
+		buffer = temporary;
         n = read(fd, temp, 1);
     }
+
     return (buffer);
 }
 
@@ -108,7 +114,7 @@ int main(int argc, char *argv[])
     buffer = get_buffer(fd);
 	close(fd);
 	arguments = get_arguments(buffer);
-	free(buffer);
+
 	//cards = get_cards(arguments);			TODO
 	//free(arguments);						TODO
 	//ray_trace(cards);						TODO
