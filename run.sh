@@ -1,2 +1,2 @@
-gcc get_input.c && ./a.out xd.rt
+gcc get_input.c libft_utils.c && ./a.out xd.rt
 rm -rf ./a.out
