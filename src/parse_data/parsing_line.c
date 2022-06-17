@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../start_main/minirt.h"
 
 char *parse_a_str_from_two_intervals(char *string, int start, int end)
 {

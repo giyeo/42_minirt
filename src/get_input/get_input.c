@@ -1,19 +1,23 @@
-#include "minirt.h"
+#include "../start_main/minirt.h"
 /*
 Open file safely and Read Everything (EASY).
 Translate the file to data structures (MEDIUM).
 Interpret the data structures into visuals (HARD).
 */
+
+void	error(void)
+{
+	printf("%s \n", strerror(errno));
+    exit(1);
+}
+
 int get_fd(char *argv[])
 {
     int fd;
 
     fd = open(argv[1], O_RDONLY);
 	if(fd == -1)
-    {
-		printf("%s \n", strerror(errno));
-        exit(1);
-    }
+		error();
 	else
 		printf("Success! fd:%d file:%s\n\n", fd, argv[1]);
     return (fd);
@@ -65,7 +69,6 @@ char *get_argument(char *buffer, char **arguments, int *place)
 	return new_buff;
 }
 
-
 char **get_arguments(char *buffer){
 	int		number_of_arguments;
 	int		i;
@@ -83,7 +86,7 @@ char **get_arguments(char *buffer){
 	return arguments;
 }
 
-char *get_buffer(int fd)
+char *read_data(int fd)
 {
 	char    *buffer;
 	char    temp[1];
@@ -99,25 +102,33 @@ char *get_buffer(int fd)
 		buffer = temporary;
         n = read(fd, temp, 1);
     }
-
+	close(fd);
     return (buffer);
 }
 
-int main(int argc, char *argv[])
+char	*get_data_from_file(char *argv[])
 {
 	int     fd;
+
+	fd = get_fd(argv);
+	return (read_data(fd));
+}
+
+/*	Each Function free the allocated data it received.
+	There are three steps in this program, read instructions file,
+	parse it into a data structure, and use it to execute the program.
+*/
+
+int main(int argc, char *argv[])
+{
 	char    *buffer;
 	char	**arguments;
 	t_data	*cards;
 
-	fd = get_fd(argv);
-    buffer = get_buffer(fd);
-	close(fd);
+	buffer = get_data_from_file(argv);
 	arguments = get_arguments(buffer);
 
 	//cards = get_cards(arguments);			TODO
-	//free(arguments);						TODO
 	//ray_trace(cards);						TODO
-	//free_cards(cards);					TODO
 	return (0);
 }

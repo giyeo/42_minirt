@@ -13,7 +13,7 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include "minilibx-linux/mlx.h"
+# include "../../minilibx-linux/mlx.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>

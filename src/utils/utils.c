@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../start_main/minirt.h"
 
 void	parsing_error(int i, int j)//t_data *data)
 {

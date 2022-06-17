@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../start_main/minirt.h"
 
 int	string_number_size(char *string)
 {

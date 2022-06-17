@@ -1,6 +1,8 @@
 NAME := minirt
 
-SRC := main.c parsing.c utils.c libft_utils.c parsing_line.c parsing_utils.c
+SRC :=	start_main/main.c \
+		parse_data/parsing.c parse_data/parsing_line.c parse_data/parsing_utils.c \
+		utils/utils.c utils/libft_utils.c \
 
 OBJS := $(SRC:.c=.o)
 

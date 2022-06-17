@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../start_main/minirt.h"
 
 size_t	ft_strlen(const char *pointer)
 {

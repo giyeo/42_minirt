@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../start_main/minirt.h"
 
 int	super_att(char *type, char *string, t_data *data)
 {
