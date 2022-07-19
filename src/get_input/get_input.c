@@ -48,10 +48,11 @@ int	next_nl(char *buffer)
 		i++;
 	return i;
 }
+
 char *get_argument(char *buffer, char **arguments, int *place)
 {
-	char *new_buff;
-	int sub_string_length;
+	char	*new_buff;
+	int		sub_string_length;
 	
 	sub_string_length = next_nl(buffer);
 	if(buffer[0] == '\0')
@@ -86,15 +87,17 @@ char **get_arguments(char *buffer){
 	return arguments;
 }
 
-char *read_data(int fd)
+char	*read_data(int fd)
 {
 	char    *buffer;
-	char    temp[1];
+	char    *temp;
 	char	*temporary;
     ssize_t n;
 
+	temp = (char *)malloc(sizeof(char) + 1);
     buffer = strdup("");
     n = read(fd, temp, 1);
+	temp[1] = '\0';
 	while (n > 0)
     {
 		temporary = ft_strjoin(buffer, temp);
@@ -127,6 +130,7 @@ int main(int argc, char *argv[])
 
 	buffer = get_data_from_file(argv);
 	arguments = get_arguments(buffer);
+	
 
 	//cards = get_cards(arguments);			TODO
 	//ray_trace(cards);						TODO

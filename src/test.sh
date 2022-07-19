@@ -1,0 +1,1 @@
+gcc test.c -lcheck -lm -lpthread -lrt -lsubunit && ./a.out
